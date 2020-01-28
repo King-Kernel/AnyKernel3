@@ -36,12 +36,19 @@ ramdisk_compression=auto;
 
 
 ## AnyKernel install
-dump_boot;
+# dump_boot;
+split_boot;
+
+if [ -f $split_img/ramdisk.cpio ]; then
+  unpack_ramdisk;
+  repack_ramdisk;
+fi;
+
+flash_boot;
 
 # begin ramdisk changes
 
 # end ramdisk changes
 
-write_boot;
 ## end install
 
